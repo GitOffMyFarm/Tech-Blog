@@ -16,7 +16,7 @@ Post.init(
             allowNull: false
         },
         body: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1000),
         },
         writer_id: {
             type: DataTypes.INTEGER,
