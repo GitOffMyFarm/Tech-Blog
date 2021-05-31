@@ -11,6 +11,10 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        text: {
+            type: DataTypes.STRING(180),
+            allowNull: false,
+        },
         post_id: {
             type: DataTypes.INTEGER,
             references: {
