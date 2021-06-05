@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -32,16 +32,12 @@ router.get('/post/:id', withAuth, async (req, res) => {
           model: User,
           attributes: ['name'],
         },
-        {
-            model: Comment,
-            attributes: ['text'],
-        }
       ],
     });
 
     const post = postData.get({ plain: true });
 
-    res.render('post', {
+    res.render('posts', {
       ...post,
       logged_in: req.session.logged_in
     });
@@ -52,7 +48,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
